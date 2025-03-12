@@ -1,0 +1,28 @@
+name: web-server
+cmd: python3
+args:
+  - -m
+  - http.server
+  - "8080"
+cwd: /tmp
+env:
+  PYTHONUNBUFFERED: "1"
+restart: always
+max_restarts: 5
+restart_delay: 3
+cluster:
+  instances: 2
+  mode: fork
+log:
+  stdout: ./logs/web-server.out.log
+  stderr: ./logs/web-server.err.log
+  rotate: true
+  max_size: 10M
+  max_files: 3
+autostart: true
+scripts:
+  pre_start: echo "Starting web server..."
+  post_start: echo "Web server started!"
+  pre_stop: echo "Stopping web server..."
+  post_stop: echo "Web server stopped!"
+

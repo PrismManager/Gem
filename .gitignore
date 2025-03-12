@@ -23,3 +23,22 @@ go.work.sum
 
 # env file
 .env
+
+# Project specific
+gem
+release/
+*.log
+.gem/
+tmp/
+dist/
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS specific
+.DS_Store
+Thumbs.db
