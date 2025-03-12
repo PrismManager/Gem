@@ -13,10 +13,11 @@ import (
 	"time"
 
 	"github.com/creack/pty"
-	"github.com/prism/gem/config"
-	"github.com/prism/gem/utils"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
+
+	"github.com/prism/gem/config"
+	"github.com/prism/gem/utils"
 )
 
 // ProcessManager handles process lifecycle management
@@ -187,7 +188,6 @@ func (pm *ProcessManager) StartProcess(procConfig *config.ProcessConfig) (*Manag
 	// Monitor process in background
 	go pm.monitorProcess(proc)
 
-	logrus.Infof("Started process %s (PID: %d)", procConfig.Name, proc.PID)
 	return proc, nil
 }
 

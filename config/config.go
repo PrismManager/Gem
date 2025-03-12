@@ -1,6 +1,7 @@
 package config
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 
@@ -121,8 +122,12 @@ type ScriptsConfig struct {
 func LoadProcessConfig(filePath string) (*ProcessConfig, error) {
 	v := viper.New()
 	v.SetConfigFile(filePath)
+	v.SetConfigType("yaml")
 
 	if err := v.ReadInConfig(); err != nil {
+		if _, ok := err.(viper.ConfigFileNotFoundError); ok {
+			return nil, fmt.Errorf("unsupported config type: %s", filepath.Ext(filePath))
+		}
 		return nil, err
 	}
 
